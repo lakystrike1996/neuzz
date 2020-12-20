@@ -1875,7 +1875,16 @@ void fuzz_lop(char * grad_file, int sock){
         if((line_cnt % 10) == 0){ 
             printf("$$$$&&&& fuzz %s line_cnt %d\n",fn, line_cnt);
             printf("edge num %d\n",count_non_255_bytes(virgin_bits));
-            fflush(stdout);
+
+            time_t timer;
+            char buffer[26];
+            struct tm* tm_info;
+
+            timer = time(NULL);
+            tm_info = localtime(&timer);
+
+            strftime(buffer, 26, "%Y-%m-%d %H:%M:%S", tm_info);
+            printf("%s", buffer);
         }
 
         /* read seed into mem */
